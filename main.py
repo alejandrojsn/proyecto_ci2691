@@ -152,7 +152,7 @@ def sumar_lineas(T:[[[int]]], N:int, tab:int, fila:int, col:int) -> int:
 	result += 1 if hay_linea_tableros(T, N, fila, col) else 0
 	return result
 
-def reflejar_jugadada(T:[[[int]]], tab:int, fila:int, col:int, turn:int) -> None:
+def reflejar_jugada(T:[[[int]]], tab:int, fila:int, col:int, turno:int) -> None:
 
 	"""
 	Parámetros:
@@ -161,22 +161,22 @@ def reflejar_jugadada(T:[[[int]]], tab:int, fila:int, col:int, turn:int) -> None
 	tab (int): el tablero de la celda jugada
 	fila (int): la fila de la celda jugada
 	col (int): la fila de la celda jugada
-	turn (int): 0 si es el turno del jugador 1, 1 si es el turno del jugador 2
+	turno (int): 0 si es el turno del jugador 1, 1 si es el turno del jugador 2
 
 	Comportamiento:
 	Cambia la celda T[tab][fila][col] a 1 si es el turno del jugador 1, 2 si es el turno del jugador 2
 	"""
 
-	T[tab][fila][col] = turn+1
+	T[tab][fila][col] = turno+1
 
-def cambiar_jugador(turn:int):
+def cambiar_jugador(turno:int) -> int:
 
 	"""
 	Parámetros:
-	turn (int): 0 si es el turno del jugador 1, 1 si es el turno del jugador 2
+	turno (int): 0 si es el turno del jugador 1, 1 si es el turno del jugador 2
 
 	Retorna:
-	0 si es el turno del jugador 2, 1 si es el turno del jugador 1
+	(int) 0 si es el turno del jugador 2, 1 si es el turno del jugador 1
 	"""
 
-	return 0 if turn else 1
+	return 0 if turno else 
