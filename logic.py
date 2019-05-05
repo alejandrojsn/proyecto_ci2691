@@ -1,3 +1,5 @@
+from Jugador import Jugador
+from gui import imprimir_puntaje
 
 def quedan_fichas(fichas:int) -> bool:
 
@@ -126,9 +128,9 @@ def hay_linea(T:[[[int]]], N:int, tab:int, fila:int, col:int) -> bool:
 	"""
 
 	return any([hay_linea_horizontal(T, N, tab, fila), hay_linea_vertical(T, N, tab, col),\
-		hay_linea_diagonal(T, N, tab, fila, col), hay_linea_tabs(T, N, fila, col)])
+		hay_linea_diagonal(T, N, tab, fila, col), hay_linea_tableros(T, N, fila, col)])
 
-def sumar_lineas(T:[[[int]]], N:int, tab:int, fila:int, col:int) -> int:
+def sumar_lineas(T:[[[int]]], N:int, tab:int, fila:int, col:int, turno:int, jugadores:[Jugador]) -> None:
 
 	"""
 	Parámetros:
@@ -138,7 +140,7 @@ def sumar_lineas(T:[[[int]]], N:int, tab:int, fila:int, col:int) -> int:
 	fila (int): la fila de la celda jugada
 	col (int): la fila de la celda jugada
 
-	Retonra:
+	Retorna:
 	result (int): el número de líneas formadas al jugar la celda
 	
 	Comportamiento:
@@ -150,7 +152,9 @@ def sumar_lineas(T:[[[int]]], N:int, tab:int, fila:int, col:int) -> int:
 	result += 1 if hay_linea_vertical(T, N, tab, col) else 0
 	result += 1 if hay_linea_diagonal(T, N, tab, fila, col) else 0
 	result += 1 if hay_linea_tableros(T, N, fila, col) else 0
-	return result
+	
+	jugadores[turno].puntaje += result
+	imprimir_puntaje(jugadores)
 
 def reflejar_jugada(T:[[[int]]], tab:int, fila:int, col:int, turno:int) -> None:
 
@@ -179,4 +183,4 @@ def cambiar_jugador(turno:int) -> int:
 	(int) 0 si es el turno del jugador 2, 1 si es el turno del jugador 1
 	"""
 
-	return 0 if turno else 
+	return 0 if turno else 1
