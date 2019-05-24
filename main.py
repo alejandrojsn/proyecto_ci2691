@@ -34,6 +34,7 @@ while(otra_partida):
 		if(hay_linea(tablero, N, tab, fila, col)):
 			sumar_lineas(tablero, N, tab, fila, col, turno, jugadores)
 
+		imprimir_puntaje(jugadores)
 		turno = cambiar_jugador(turno)
 
 		fichas = fichas - 1

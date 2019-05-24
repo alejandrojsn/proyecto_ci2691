@@ -1,5 +1,4 @@
 from Jugador import Jugador
-from gui import imprimir_puntaje
 
 def quedan_fichas(fichas:int) -> bool:
 
@@ -154,7 +153,6 @@ def sumar_lineas(T:[[[int]]], N:int, tab:int, fila:int, col:int, turno:int, juga
 	result += 1 if hay_linea_tableros(T, N, fila, col) else 0
 	
 	jugadores[turno].puntaje += result
-	imprimir_puntaje(jugadores)
 
 def reflejar_jugada(T:[[[int]]], tab:int, fila:int, col:int, turno:int) -> None:
 
