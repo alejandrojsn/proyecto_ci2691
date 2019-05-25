@@ -29,3 +29,12 @@ class Tablero:
 			return True
 
 		return False
+
+	def dibujar_fichas(self, superficie, tablero, colores):
+		for i in range(0, self.n):
+			for j in range(0, self.n):
+				y = self.y + self.alto_celda // 2 + self.alto_celda * i
+				x = self.x + self.ancho_celda // 2 + self.ancho_celda * j
+				r = min(self.ancho_celda, self.alto_celda) // 4
+				if tablero[i][j] != 0:
+					pygame.draw.circle(superficie, colores[tablero[i][j]-1], (x, y), r)

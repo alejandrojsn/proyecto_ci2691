@@ -12,6 +12,7 @@ tamaño = ancho, alto = 600, 600
 negro = 0, 0, 0
 blanco = 255, 255, 255
 azul = 0, 102, 255
+rojo = 255, 0, 0
 N = 3
 font = pygame.freetype.SysFont('Arial', 24)
 
@@ -70,5 +71,6 @@ while True:
 	pygame.draw.polygon(pantalla, azul, [(300, 49), (274, 88), (326, 88)])
 	pygame.draw.polygon(pantalla, azul, [(300, 551), (274, 512), (326, 512)])
 	tablero_display.dibujar(pantalla, negro)
+	tablero_display.dibujar_fichas(pantalla, tablero[tab], [azul, rojo])
 	font.render_to(pantalla, (255, 10), "Tablero {}".format(tab), negro)
 	pygame.display.flip()
