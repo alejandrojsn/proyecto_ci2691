@@ -1,4 +1,6 @@
 import pygame
+import pygame.gfxdraw
+import math
 
 class Tablero:
 
@@ -13,15 +15,15 @@ class Tablero:
 		self.ancho_celda = ancho // n
 		self.alto_celda = alto // n
 
-	def dibujar(self, superficie, color, borde = 4):
+	def dibujar(self, superficie, color, borde = 2):
 
 		for i in range(1, self.n):
 
 			x = self.x + self.ancho_celda*i
 			y = self.y + self.alto_celda*i
 
-			pygame.draw.line(superficie, color, (self.x, y), (self.endx, y), borde)
-			pygame.draw.line(superficie, color, (x, self.y), (x, self.endy), borde)
+			pygame.draw.aaline(superficie, color, (self.x, y), (self.endx, y), borde)
+			pygame.draw.aaline(superficie, color, (x, self.y), (x, self.endy), borde)
 
 	def esta_adentro(self, punto):
 		if self.x <= punto[0] <= self.endx and self.y <= punto[1] <= self.endy:
@@ -37,4 +39,6 @@ class Tablero:
 				x = self.x + self.ancho_celda // 2 + self.ancho_celda * j
 				r = min(self.ancho_celda, self.alto_celda) // 4
 				if tablero[i][j] != 0:
-					pygame.draw.circle(superficie, colores[tablero[i][j]-1], (x, y), r)
+
+					pygame.gfxdraw.filled_circle(superficie, x, y, r, colores[tablero[i][j]-1])
+					pygame.gfxdraw.aacircle(superficie, x, y, r, colores[tablero[i][j]-1])
