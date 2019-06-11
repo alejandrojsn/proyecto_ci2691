@@ -62,7 +62,7 @@ def hay_linea_vertical(T:[[[int]]], N:int, tab:int, col:int) -> bool:
 
 	return all(T[tab][i][col] != 0 and T[tab][i][col] == T[tab][i+1][col] for i in range(N-1))
 
-def hay_linea_diagonal(T:[[[int]]], N:int, tab:int, fila:int, col:int) -> bool:
+def hay_linea_diagonal(T:[[[int]]], N:int, tab:int, fila:int, col:int) -> int:
 
 	"""
 	Parámetros:
@@ -73,27 +73,28 @@ def hay_linea_diagonal(T:[[[int]]], N:int, tab:int, fila:int, col:int) -> bool:
 	col (int): la fila de la celda jugada
 
 	Retorna:
-	(bool) Verdadero si todas las celdas de la diagonal son iguales, Falso en caso contrario o si la celda
-	no pertenece a una diagonal
+	(int) El número de lineas diagonales que hay 
 
 	Comportamiento:
 	Checha si la fila y la columna son iguales, en dado caso, la celda forma parte de la diagonal
-	principal, por lo que checa que todas las celdas cuyas filas y columnas son iguales tengan el mismo valor.
+	principal, por lo que checa que todas las celdas cuyas filas y columnas son iguales tengan el mismo valor. 
 
-	Si esto no sucede,
+	Si suecede, suma 1 a result
 
 	Checa que la suma de la fila con la columna sea igual a N-1, en dado caso, la celda forma parte de la
 	diagonal secundaria, por lo que checha que todas las celdas cuyas filas y columnas suman N-1 tengan el mismo valor.
 
-	Si esto no sucede, retorna falso
-	"""
+	Si sucede, suma 1 a result
 
+	Retorna result
+	"""
+	result = 0;
 	if(fila==col):
-		return all(T[tab][i][i] != 0 and T[tab][i][i] == T[tab][i+1][i+1] for i in range(N-1))
-	elif(fila+col == N-1):
-		return all( T[tab][i][N-1-i] != 0 and T[tab][i][N-1-i] == T[tab][i+1][N-2-i]  for i in range(N-1))
-	else:
-		return False
+		result += 1 if all(T[tab][i][i] != 0 and T[tab][i][i] == T[tab][i+1][i+1] for i in range(N-1)) else 0
+	if(fila+col == N-1):
+		result += 1 if all( T[tab][i][N-1-i] != 0 and T[tab][i][N-1-i] == T[tab][i+1][N-2-i]  for i in range(N-1)) else 0
+	
+	return result
 
 def hay_linea_tableros(T:[[[int]]], N:int, fila:int, col:int) -> bool:
 
@@ -149,7 +150,7 @@ def sumar_lineas(T:[[[int]]], N:int, tab:int, fila:int, col:int, turno:int, juga
 	result = 0
 	result += 1 if hay_linea_horizontal(T, N, tab, fila) else 0
 	result += 1 if hay_linea_vertical(T, N, tab, col) else 0
-	result += 1 if hay_linea_diagonal(T, N, tab, fila, col) else 0
+	result += hay_linea_diagonal(T, N, tab, fila, col)
 	result += 1 if hay_linea_tableros(T, N, fila, col) else 0
 	
 	jugadores[turno].puntaje += result

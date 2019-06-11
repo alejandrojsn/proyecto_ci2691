@@ -32,8 +32,8 @@ while intro:
 
 			sys.exit()
 
-		elif event.type == pygame.MOUSEBUTTONDOWN:
-			intro = False
+		#elif event.type == pygame.MOUSEBUTTONDOWN:
+			#intro = False
 
 		elif event.type == pygame.KEYDOWN:
 
@@ -143,6 +143,7 @@ while otra_partida:
 							turno = cambiar_jugador(turno)
 
 						except:
+							pass
 							#print("Jugada inválida")
 
 
@@ -164,7 +165,7 @@ while otra_partida:
 		font.render_to(pantalla, (600, 70), str(jugadores[0].puntaje), negro)
 		font.render_to(pantalla, (600, 100), jugadores[1].nombre, negro)
 		font.render_to(pantalla, (600, 130), str(jugadores[1].puntaje), negro)
-		font.render_to(pantalla, (600, 170), "Viva la marihuana", negro)
+		font.render_to(pantalla, (600, 160), "Turno: {}".format(jugadores[turno].nombre), negro)
 		pygame.display.flip()
 
 	outro = True
